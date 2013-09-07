@@ -5,6 +5,8 @@ $('#submit').on('click', function(){
   pullOff();
 });
 
+var blockedWebsites = [];
+
 function saveInfo() {
   // Fill arrays with blocked websites & times
   var websites = [];
@@ -22,6 +24,17 @@ function saveInfo() {
       times.push(temp);
     }
   });
+<<<<<<< HEAD
+=======
+  var siteMatch = [];
+  var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i;
+  websites.forEach(function(s) {
+    var print = s.match(pattern)[0];
+    console.log(print)
+    siteMatch.push(print);
+  });
+
+>>>>>>> upstream/master
 
   // Save to chrome sync
   chrome.storage.sync.set({"tracking": websites, "time": times}, function() {
@@ -44,7 +57,21 @@ $("#add").click(function() {
 
 });
 
+<<<<<<< HEAD
 // Remove form fields on click
+=======
+>>>>>>> upstream/master
 $("#minus").click(function() {
   $(".finalformentry div:last").parent().remove();
 });
+<<<<<<< HEAD
+=======
+
+// // Regex for site blocker
+// var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i
+// sites.forEach(function(s) {
+//   var print = s.match(pattern)[0];
+//   s = "*://*." + print + "/*";
+//   console.log(s);
+// });
+>>>>>>> upstream/master

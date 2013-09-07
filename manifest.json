@@ -26,7 +26,9 @@
 
 
 "background": {
-  "scripts": ["newRedirect.js", "utilities.js"]
+  "scripts": ["redirect.js", "utilities.js"]
   //"persistent": false
-	}
+	},
+
+"web_accessible_resources": ["newRedirect.js", "custom.js", "utilities.js", "custom.css", "formatFix.js", "index.js", "jquery-1.10.2.min.js", "monitor.js", "popup.js"]
 }
