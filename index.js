@@ -13,5 +13,5 @@ chrome.storage.sync.set({'time1': t1}, function()});
 chrome.storage.onChanged.addListener(function(changes, namespace){
 	for (key in changes) {
 	}
-    }
-   
+}
+
