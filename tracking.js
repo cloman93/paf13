@@ -4,10 +4,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	getTracked();
 	getTimeLeft();
 	var index = 0;
-	console.log("TEST: " + tab.url.match(pattern));
+	console.log("TEST: " + tab.url.match(pattern)[0]);
 	var url = tab.url.match(pattern)[0];
-	console.log("this is the tab url: " + url);
-	console.log("this is the tab status: " + changeInfo.status);
+	console.log("TRACKING: " + url + ", page is " + changeInfo.status);
 
 
 	for (var i = 0; i < trackedSites.length; i++) {
