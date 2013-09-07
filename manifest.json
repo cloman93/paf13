@@ -19,14 +19,14 @@
 
 /* "content_scripts": [
 	{
-   
+
 /*     "js": ["newRedirect.js"]
  }
 ]    */
 
 
 "background": {
-  "scripts": ["redirect.js", "utilities.js"]
+  "scripts": ["redirect.js", "utilities.js", "tracking.js"]
   //"persistent": false
 	},
 
