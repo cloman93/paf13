@@ -51,11 +51,8 @@ function saveInfo() {
     //   $(this).remove();
     // }
   });
-
-<<<<<<< HEAD
+  
   // Regex match out
-=======
->>>>>>> upstream/master
   var siteMatch = [];
   var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i;
   websites.forEach(function(s) {
@@ -111,19 +108,12 @@ $("#add").click(function() {
   $("#rightform").append(field)
 });
 
-<<<<<<< HEAD
 // Remove form fields on click
-=======
-
-// Remove form fields on click
-
->>>>>>> upstream/master
 $("#minus").click(function() {
   if (!$(".finalformentry div:last").attr("readonly")) {
     $(".finalformentry div:last").parent().remove();
   }
 });
-<<<<<<< HEAD
 
 // // Regex for site blocker
 // var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i
@@ -132,5 +122,3 @@ $("#minus").click(function() {
 //   s = "*://*." + print + "/*";
 //   console.log(s);
 // });
-=======
->>>>>>> upstream/master
