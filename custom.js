@@ -53,7 +53,6 @@ $("#add").click(function() {
   $("#rightform:last-child").removeClass(".finalformentry");
 });
 
-<<<<<<< HEAD
 $("#minus").click(function() {
   console.log($("#rightform:last-child"));
   $(".finalformentry").remove();
@@ -67,5 +66,3 @@ $("#minus").click(function() {
 //   s = "*://*." + print + "/*";
 //   console.log(s);
 // });
-=======
->>>>>>> upstream/master

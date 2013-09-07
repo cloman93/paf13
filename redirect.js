@@ -2,19 +2,27 @@ var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly
 
 var testArray = ["facebook.com", "reddit.com", "bing.com"];
 
+var blockedSites = getBlocked();
+
+function getBlocked() {
+	console.log("rebuilding blocked sites array");
+	chrome.storage.sync.get("websites", function(callback){
+		console.log(callback.websites);
+		blockedSites = callback.websites;
+	});
+}
+
 function blockSite(requested) {
-	console.log("1: " + requested.url);
+	console.log("START: " + requested.url);
 	var req = requested.url.match(pattern)[0];
 	var blocked = false;
-	chrome.storage.sync.get("websites",function(callback){
-		console.log("2: " + requested.url);
-		callback.websites.forEach(function(s){
-			console.log("3: " + requested.url);
-			if (s === req) {
-				console.log("4a: " + requested.url);
-				return {redirectUrl: "https://www.google.com"};
-			}
-		});
+	console.log("CURRENT LOG:" + blockedSites);
+	blockedSites.forEach(function(s){
+		console.log("-looking at: " + s);
+		if (s === req || s == req) {
+			console.log("FOUND MATCH, WILL BLOCK");
+			blocked = true;
+		}
 	});
 	/*testArray.forEach(function(s){
 		if (s === req) {
@@ -23,8 +31,13 @@ function blockSite(requested) {
 			return;
 		}
 	});*/
-	console.log("4b: " + requested.url);
-	return {redirectUrl: requested.url};
+	if (blocked) {
+		console.log("REDIRECTING:" + requested.url);
+			return {redirectUrl: "https://www.google.com"};
+	} else {
+		console.log("ALLOWING: " + requested.url);
+		return {redirectUrl: requested.url};
+	}
 }
 
 console.log("running...");
