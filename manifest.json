@@ -14,6 +14,19 @@
 	"default_popup": "popup.html"
 	//"options_page": "options.html"
 	},
-"permissions": ["tabs", "http://*/*", "https://*/*"]
+"permissions": ["tabs", "declarativeWebRequest",
+    "*://*/*"],
 
+// "content_scripts": [
+//	{
+ //     "matches": ["http://*/*", "https://*/*"],
+//      "js": ["monitor.js"]
+ // }
+ //]
+ 
+
+"background": {
+  "scripts": ["monitor.js"]
+  //"persistent": false
+	}
 }
