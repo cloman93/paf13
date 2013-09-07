@@ -26,7 +26,7 @@
 
 
 "background": {
-  "scripts": ["newRedirect.js"]
+  "scripts": ["newRedirect.js", "utilities.js"]
   //"persistent": false
 	}
 }
