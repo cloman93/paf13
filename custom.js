@@ -2,7 +2,7 @@
 $('#submit').on('click', function(){
   chrome.storage.sync.clear();
   saveInfo();
-  pullOut();
+  pullOff();
 });
 
 function saveInfo() {
@@ -18,54 +18,33 @@ function saveInfo() {
   // Times
   $('.time input').each(function(index) {
     if ($(this).val() != "") {
-      times.push($(this).val());
+      var temp = parseInt($(this).val()) * 60000;
+      times.push(temp);
     }
   });
-  var siteMatch = [];
-  var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i;
-  websites.forEach(function(s) {
-    var print = s.match(pattern)[0];
-    print = "*://*." + print + "/*";
-    console.log(print)
-    siteMatch.push(print);
-  });
-
-
 
   // Save to chrome sync
-  chrome.storage.sync.set({"websites": siteMatch, "times": times}, function() {
-      console.log('websites & times have been saved');
+  chrome.storage.sync.set({"tracking": websites, "time": times}, function() {
   });
 }
 
-function pullOut() {
-  // Pull websites off of Chrome sync
-  chrome.storage.sync.get(["websites", "times"],function(message){
-      console.log(message.websites + " : " + message.times);
+// Pull websites off of Chrome sync
+function pullOff() {
+  chrome.storage.sync.get(["tracking", "time"],function(message){
+      console.log(message.tracking + " : " + message.time);
   });
 }
 
 // Add form fields on click
 $("#add").click(function() {
   var counter = 5;
-  var field = "<div class=\"form-inline finalformentry\" style=\"margin-bottom: 20px;\"><div class=\"form-group\"><input type=\"text\" class=\"form-control\"id=\"website" + counter + "\" placeholder=\"Website\" style=\"width: 350px;text-align: center;\"></div> <div class=\"form-group\"><input type=\"text\"class=\"form-control\" id=\"time" + counter + "\" placeholder=\"Time\"style=\"width: 120px; text-align: center;\"></div></div><br>";
+  var field = "<div class=\"form-inline finalformentry\" style=\"margin-bottom: 5px;\"><div class=\"form-group website\"><input type=\"text\" class=\"form-control\" id=\"website0\" placeholder=\"Website\" style=\"width: 290px; height: 50px; text-align: center;\"></div> <div class=\"form-group time\"><input type=\"text\" class=\"form-control\" id=\"time0\" placeholder=\"Time\" style=\"width: 100px; height: 50px; text-align: center;\"></div></div>"
   counter++;
-  $("#rightform:last-child").removeClass(".finalformentry");
+  $("#rightform").append(field)
+
 });
 
-<<<<<<< HEAD
+// Remove form fields on click
 $("#minus").click(function() {
-  console.log($("#rightform:last-child"));
-  $(".finalformentry").remove();
-  $("#rightform:last-child").addClass("finalformentry");
+  $(".finalformentry div:last").parent().remove();
 });
-
-// // Regex for site blocker
-// var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i
-// sites.forEach(function(s) {
-//   var print = s.match(pattern)[0];
-//   s = "*://*." + print + "/*";
-//   console.log(s);
-// });
-=======
->>>>>>> upstream/master
