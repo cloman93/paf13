@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i;
 
 var blockedSites = [];
@@ -11,27 +12,34 @@ function getBlocked() {
 }
 
 
+=======
+>>>>>>> upstream/master
 function blockSite(requested) {
 	getBlocked();
-	console.log("START: " + requested.url);
+	//console.log("START: " + requested.url);
 	var req = requested.url.match(pattern)[0];
 	var blocked = false;
-	console.log("CURRENT LOG:" + blockedSites);
+	//console.log("CURRENT LOG: " + blockedSites);
 	blockedSites.forEach(function(s){
-		console.log("-looking at: " + s);
+		//console.log("-looking at: " + s);
 		if (s === req) {
-			console.log("FOUND MATCH, WILL BLOCK");
+			//console.log("FOUND MATCH, WILL BLOCK");
 			blocked = true;
 		}
 	});
 	if (blocked) {
-		console.log("REDIRECTING:" + requested.url);
+		//console.log("REDIRECTING:" + requested.url);
 			return {redirectUrl: "chrome-extension://mbipjdgekkbkafemhejdbgaencplgmca/index.html"};
 	} else {
-		console.log("ALLOWING: " + requested.url);
+		//console.log("ALLOWING: " + requested.url);
 		return {redirectUrl: requested.url};
 	}
 }
 
+<<<<<<< HEAD
 console.log("running...");
 chrome.webRequest.onBeforeRequest.addListener(blockSite, {urls: ["*://*/*"]}, ['blocking']);
+=======
+//console.log("running...");
+chrome.webRequest.onBeforeRequest.addListener(blockSite, {urls: ["*://*/*"]}, ['blocking']);
+>>>>>>> upstream/master
