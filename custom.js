@@ -24,8 +24,7 @@ function saveInfo() {
       times.push(temp);
     }
   });
-<<<<<<< HEAD
-=======
+
   var siteMatch = [];
   var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i;
   websites.forEach(function(s) {
@@ -33,8 +32,6 @@ function saveInfo() {
     console.log(print)
     siteMatch.push(print);
   });
-
->>>>>>> upstream/master
 
   // Save to chrome sync
   chrome.storage.sync.set({"tracking": websites, "time": times}, function() {
