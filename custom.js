@@ -1,3 +1,8 @@
+$('#submit').click(function(){
+  saveChanges();
+  pullOut();
+});
+
 function saveChanges() {
   console.log("hay1");
   // Get a value saved in a form.
@@ -22,11 +27,6 @@ function saveChanges() {
   });
 }
 
-function pullOut() {
-  var message = chrome.storage.sync.get("websites",function(){});
-  console.log(message);
-}
-
 var counter = 1;
     console.log("hi1");
 
@@ -45,7 +45,8 @@ var counter = 1;
 
     });
 
-$('#submit').click(function(){
-  saveChanges();
-  pullOut();
-});
+function pullOut() {
+  chrome.storage.sync.get("websites",function(message){
+      console.log(message.websites);
+  });
+}
