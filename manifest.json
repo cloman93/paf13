@@ -15,19 +15,18 @@
 	},
   "options_page": "index.html",
 
-"permissions": ["tabs", "declarativeWebRequest", "storage",
-    "*://*/*"],
+"permissions": ["tabs", "declarativeWebRequest", "storage", "webRequest", "webRequestBlocking", "*://*/*"],
 
-// "content_scripts": [
-//	{
-//     "matches": ["http://*/*", "https://*/*"],
-//      "js": ["monitor.js"]
-// }
-//]
+/* "content_scripts": [
+	{
+   
+/*     "js": ["newRedirect.js"]
+ }
+]    */
 
 
 "background": {
-  "scripts": ["monitor.js"]
+  "scripts": ["newRedirect.js"]
   //"persistent": false
 	}
 }

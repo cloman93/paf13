@@ -1,4 +1,4 @@
-chrome.webRequest.onBeforeRequest.addListener(
+  chrome.webRequest.onBeforeRequest.addListener(
   function(info) {
     console.log(info);
 	return {redirectUrl: "https://www.google.com"};
