@@ -14,12 +14,11 @@ return {redirectUrl: "https://www.google.com"};
 ["blocking"]);
 =======
   function(info) {
-    console.log(info);
+    console.log(info.url);
 	return {redirectUrl: "https://www.google.com"};
   },
-  // filters
-  {urls: getBlockedSites()
-  },
+  //filters
+  {urls: ["*://*.facebook.com/*"]},
   // extraInfoSpec
   ["blocking"]);
 >>>>>>> upstream/master

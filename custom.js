@@ -5,6 +5,8 @@ $('#submit').on('click', function(){
   pullOut();
 });
 
+var blockedWebsites = [];
+
 function saveInfo() {
   // Fill arrays with blocked websites & times
   var websites = [];
@@ -25,11 +27,9 @@ function saveInfo() {
   var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i;
   websites.forEach(function(s) {
     var print = s.match(pattern)[0];
-    print = "*://*." + print + "/*";
     console.log(print)
     siteMatch.push(print);
   });
-
 
 
   // Save to chrome sync
