@@ -15,7 +15,7 @@
 	},
   "options_page": "index.html",
 
-"permissions": ["tabs", "declarativeWebRequest", "storage", "webRequest", "webRequestBlocking", "*://*/*"],
+"permissions": ["tabs", "storage", "webRequest", "webRequestBlocking", "*://*/*"],
 
 /* "content_scripts": [
 	{

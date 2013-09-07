@@ -21,9 +21,19 @@ function saveInfo() {
       times.push($(this).val());
     }
   });
+  var siteMatch = [];
+  var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i;
+  websites.forEach(function(s) {
+    var print = s.match(pattern)[0];
+    print = "*://*." + print + "/*";
+    console.log(print)
+    siteMatch.push(print);
+  });
+
+
 
   // Save to chrome sync
-  chrome.storage.sync.set({"websites": websites, "times": times}, function() {
+  chrome.storage.sync.set({"websites": siteMatch, "times": times}, function() {
       console.log('websites & times have been saved');
   });
 }
@@ -45,10 +55,3 @@ $("#add").click(function() {
   console.log('field');
 });
 
-// Regex for site blocker
-var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i
-sites.forEach(function(s) {
-  var print = s.match(pattern)[0];
-  s = "*://*." + print + "/*";
-  console.log(s);
-});
