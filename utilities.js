@@ -8,6 +8,7 @@ function getBlocked() {
 		console.log(callback.blocking);
 		blockedSites = callback.blocking;
 	});
+	if (blockedSites === undefined) blockedSites = [];
 }
 
 var trackedSites = getTracked();
@@ -18,6 +19,7 @@ function getTracked() {
 		console.log(callback.tracking);
 		trackedSites = callback.tracking;
 	});
+	if (trackedSites === undefined) trackedSites = [];
 }
 
 var timeLeft = getTimeLeft();
@@ -28,4 +30,5 @@ function getTimeLeft() {
 		console.log(callback.time);
 		timeLeft = callback.time;
 	});
+	if (timeLeft === undefined) timeLeft = [];
 }

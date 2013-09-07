@@ -1,11 +1,14 @@
-chrome.webRequest.onBeforeRequest.addListener(function(info) {
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	var pageStart = new Date().getTime();
 
 	getTracked();
 	getTimeLeft();
 	var index = 0;
-	console.log(chrome.tabs.url);
-	var url = info.url.match(pattern)[0];
+	console.log("TEST: " + tab.url.match(pattern));
+	var url = tab.url.match(pattern)[0];
+	console.log("this is the tab url: " + url);
+	console.log("this is the tab status: " + changeInfo.status);
+
 
 	for (var i = 0; i < trackedSites.length; i++) {
 		if(trackedSites[i] === url) {
@@ -38,6 +41,7 @@ chrome.webRequest.onBeforeRequest.addListener(function(info) {
 	}
 
 	function goneInactive() {
+		//TODO
 	}
 
 	function timeOut() {
@@ -49,5 +53,4 @@ chrome.webRequest.onBeforeRequest.addListener(function(info) {
 		chrome.storage.sync.set("blocking", blockedSites);
 		chrome.tabs.reload;
 	}
-}, 
-{urls: ["*://*/*"]});
+});
