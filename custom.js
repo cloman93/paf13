@@ -1,52 +1,46 @@
-$('#submit').click(function(){
-  saveChanges();
+// Click handler to live check the Dom
+$('#submit').on('click', function(){
+  chrome.storage.sync.clear();
+  saveInfo();
   pullOut();
 });
 
-function saveChanges() {
-  console.log("hay1");
-  // Get a value saved in a form.
-  var website = website0.value;
-  // Check that there's some code there.
-  console.log("hay2");
-  if (!website) {
-    console.log('Error: No value specified');
-    return;
-  }
-  console.log("hay3");
+function saveInfo() {
+  // Fill arrays with blocked websites & times
+  var websites = [];
+  var times = [];
+  // Websites
+  $('.website input').each(function(index) {
+    if ($(this).val() != "") {
+      websites.push($(this).val());
+    }
+  });
+  // Times
+  $('.time input').each(function(index) {
+    if ($(this).val() != "") {
+      times.push($(this).val());
+    }
+  });
 
-  // var websites = [];
-  // for (var i = 0; i < counter; i++) {
-
-  // }
-
-  // Save it using the Chrome extension storage API.
-  chrome.storage.sync.set({"websites": website}, function() {
-    // Notify that we saved.
-    console.log('Settings saved');
+  // Save to chrome sync
+  chrome.storage.sync.set({"websites": websites, "times": times}, function() {
+      console.log('websites & times have been saved');
   });
 }
-
-var counter = 1;
-    console.log("hi1");
-
-    $("#add").click(function() {
-    console.log("hi2");
-
-    var field = "<div class=\"form-inline\" style=\"margin-top: 20px;\"> <div class=\"form-group\"><input type=\"text\" class=\"form-control\"id=\"website" + counter + "\" placeholder=\"Website\" style=\"width: 350px; text-align: center;\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control\" id=\"time" + counter + "\" placeholder=\"Time\" style=\"width: 120px; text-align: center;\"></div></div>";
-
-    console.log("hi3");
-
-    counter++;
-
-    $("#rightform div:first").append(field).fadeIn();
-
-    console.log("hi4");
-
-    });
 
 function pullOut() {
-  chrome.storage.sync.get("websites",function(message){
-      console.log(message.websites);
+  // Pull websites off of Chrome sync
+  chrome.storage.sync.get(["websites", "times"],function(message){
+      console.log(message.websites + " : " + message.times);
   });
 }
+
+$("#add").on("click", function() {
+  // Add form fields on click
+  var counter = 1;
+  var field = "<div class=\"form-inline\" style=\"margin-top: 20px;\"><divclass=\"form-group\"><input type=\"text\" class=\"form-control\"id=\"website" + counter + "\" placeholder=\"Website\" style=\"width: 350px;text-align: center;\"></div><div class=\"form-group\"><input type=\"text\"class=\"form-control\" id=\"time" + counter + "\" placeholder=\"Time\"style=\"width: 120px; text-align: center;\"></div></div>";
+  counter++;
+  console.log('field added');
+  $("#rightform first:div").append(field);
+  console.log('field');
+});
