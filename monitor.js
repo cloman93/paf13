@@ -1,7 +1,7 @@
 var rule = {
   conditions: [
     new chrome.declarativeWebRequest.RequestMatcher({
-      url: { hostSuffix: 'google.com' } })
+      url: { hostSuffix: 'wired.com' } })
   ],
   actions: [
     new chrome.declarativeWebRequest.RedirectRequest({

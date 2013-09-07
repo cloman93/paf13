@@ -12,18 +12,19 @@
 	"default_icon": {},
 	"default_title": "default_title",
 	"default_popup": "popup.html"
-	//"options_page": "options.html"
 	},
-"permissions": ["tabs", "declarativeWebRequest",
+  "options_page": "index.html",
+
+"permissions": ["tabs", "declarativeWebRequest", "storage",
     "*://*/*"],
 
 // "content_scripts": [
 //	{
- //     "matches": ["http://*/*", "https://*/*"],
+//     "matches": ["http://*/*", "https://*/*"],
 //      "js": ["monitor.js"]
- // }
- //]
- 
+// }
+//]
+
 
 "background": {
   "scripts": ["monitor.js"]
