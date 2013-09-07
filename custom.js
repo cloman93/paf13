@@ -35,12 +35,20 @@ function pullOut() {
   });
 }
 
-$("#add").on("click", function() {
-  // Add form fields on click
+// Add form fields on click
+$("#add").click(function() {
   var counter = 1;
-  var field = "<div class=\"form-inline\" style=\"margin-top: 20px;\"><divclass=\"form-group\"><input type=\"text\" class=\"form-control\"id=\"website" + counter + "\" placeholder=\"Website\" style=\"width: 350px;text-align: center;\"></div><div class=\"form-group\"><input type=\"text\"class=\"form-control\" id=\"time" + counter + "\" placeholder=\"Time\"style=\"width: 120px; text-align: center;\"></div></div>";
+  var field = "<div class=\"form-inline\" style=\"margin-top: 20px;\"><div class=\"form-group\"><input type=\"text\" class=\"form-control\"id=\"website" + counter + "\" placeholder=\"Website\" style=\"width: 350px;text-align: center;\"></div><div class=\"form-group\"><input type=\"text\"class=\"form-control\" id=\"time" + counter + "\" placeholder=\"Time\"style=\"width: 120px; text-align: center;\"></div></div>";
   counter++;
   console.log('field added');
-  $("#rightform first:div").append(field);
+  $("#rightform div:last").append(field);
   console.log('field');
+});
+
+// Regex for site blocker
+var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i
+sites.forEach(function(s) {
+  var print = s.match(pattern)[0];
+  s = "*://*." + print + "/*";
+  console.log(s);
 });
