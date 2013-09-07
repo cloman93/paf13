@@ -1,11 +1,19 @@
-function getBlockedSites() {
-  var sites = [];
-  chrome.storage.sync.get("websites", function(message){
-    message.forEach(s) {
-      sites.push(s);
-      console.log(s);
-    }
-  })
-  console.log(sites);
-  return sites;
+var blockedSites = getBlocked();
+
+function getBlocked() {
+	console.log("rebuilding blocked sites array");
+	chrome.storage.sync.get("blocking", function(callback){
+		console.log(callback.blocking);
+		blockedSites = callback.blocking;
+	});
+}
+
+var trackedSites = getTracked();
+
+function getTracked() {
+	console.log("rebuilding tracked sites array");
+	chrome.storage.sync.get("tracking", function(callback){
+		console.log(callback.tracking);
+		blockedSites = callback.tracking;
+	});
 }
