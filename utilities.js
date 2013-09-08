@@ -1,19 +1,8 @@
 var pattern = /[A-z0-9]+\.(com|edu|org|net|xxx|gov|mil|biz|info|mobi|post|pro|ly|io|im|us)/i;
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
 var blockedChanged = true;
 var blockedSites = [];
 getBlocked();
-=======
-var blockedChanged = false;
-var blockedSites = getBlocked();
->>>>>>> upstream/master
-<<<<<<< HEAD
->>>>>>> ed46fde458b6b0418f505363b06b56b656a56118
-=======
->>>>>>> ed46fde458b6b0418f505363b06b56b656a56118
 
 var blockedSites = getBlocked();
 function getBlocked() {
@@ -31,37 +20,13 @@ function getBlocked() {
 	}
 }
 
-<<<<<<< HEAD
+
 var trackedChanged = true;
 var trackedSites = [];
 var trackedListening = [];
 getTracked();
 
-=======
-var trackedChanged = false;
-var trackedSites = getTracked();
-<<<<<<< HEAD
->>>>>>> ed46fde458b6b0418f505363b06b56b656a56118
-=======
->>>>>>> ed46fde458b6b0418f505363b06b56b656a56118
 function getTracked() {
-<<<<<<< HEAD
-	console.log("rebuilding tracked sites array");
-	chrome.storage.sync.get("tracking", function(callback){
-		console.log(callback.tracking);
-		trackedSites = callback.tracking;
-	});
-}
-
-var timeLeft = getTimeLeft();
-function getTimeLeft() {
-	console.log("rebuilding time left array");
-	chrome.storage.sync.get("time", function(callback){
-		console.log(callback.time);
-		timeLeft = callback.time;
-	});
-}
-=======
 	if (trackedChanged) {
 		console.log("rebuilding tracked sites array");
 		chrome.storage.sync.get("tracking", function(callback){
@@ -94,4 +59,3 @@ function getTimeLeft() {
 		timeChanged = false;
 	}
 }
->>>>>>> upstream/master
