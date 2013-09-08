@@ -1,11 +1,11 @@
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+
 	var pageStart = new Date().getTime();
 
 	getTracked();
 	getTimeLeft();
 	var index = 0;
-	console.log("TEST: " + tab.url.match(pattern)[0]);
-	var url = tab.url.match(pattern)[0];
+	if (tab.url.match(pattern) !== null) var url = tab.url.match(pattern)[0];
 	console.log("TRACKING: " + url + ", page is " + changeInfo.status);
 
 
@@ -15,13 +15,19 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		}
 	}
 
+	if(trackedListening[index] || changeInfo.status === "loading") return;
+	trackedListening[index] = true;
+
 	var pageTimeAllocation = timeLeft[index];
 	var timeElapsed = 0;
 
 	var timer = setInterval(check, 250);
 
+	console.log("tracking page index: " + index);
+	console.log("tracking page time: " + pageTimeAllocation);
 
 	function check() {
+		console.log("start check");
 		var timeNow = new Date().getTime();
 		timeElapsed = timeNow - pageStart;
 		console.log(timeElapsed);
@@ -29,6 +35,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 			timeOut();
 		}
 		if (chrome.tabs.active) goneInactive();
+		console.log("end check");
 	}
 
 	window.onBeforeUnload = saveTimeLeaving();

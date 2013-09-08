@@ -16,10 +16,10 @@ function getBlocked() {
 >>>>>>> upstream/master
 function blockSite(requested) {
 	getBlocked();
-	//console.log("START: " + requested.url);
 	var req = requested.url.match(pattern)[0];
 	var blocked = false;
-	//console.log("CURRENT LOG: " + blockedSites);
+	console.log("CURRENT LOG: " + blockedSites);
+	if (blockedSites === undefined) blockedSites = [];
 	blockedSites.forEach(function(s){
 		//console.log("-looking at: " + s);
 		if (s === req) {
